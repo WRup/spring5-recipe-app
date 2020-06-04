@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Spring 5 Recipe App</title>
 </head>
 <body>
 
-    <table>
-        <tr>
-            <td>123</td>
-            <td>123</td>
-            <td>123</td>
-        </tr>
-    </table>
+<table>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="Description + ${recipe.description}">1</td>
+        <td><a th:href="${recipe.url}" th:text="${recipe.source}">Title ...</a></td>
+        <td th:text="${recipe.notes.recipeNotes}">1</td>
+        <td th:text="Prep + ${recipe.prepTime}">Text ...</td>
+        <td th:text="Servings + ${recipe.servings}">Text ...</td>
+        <td>
+            <p th:each="ingredient : ${recipe.ingredients}">
+                <span th:text="${ingredient.description}">Text...></span>
+                <span th:text="Amount + ${ingredient.description}">Text...></span>
+                <span th:text="UOM + ${ingredient.uom}">Text...></span>
+            </p>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>
