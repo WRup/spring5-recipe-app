@@ -7,19 +7,29 @@
 <body>
 
 <table>
+    <tr>
+        <th>Description</th>
+        <th>Source</th>
+        <th>Notes</th>
+        <th>Preparation Time</th>
+        <th>Servings</th>
+        <th>Ingredients</th>
+        <th>Directions</th>
+    </tr>
     <tr th:each="recipe : ${recipes}">
-        <td th:text="Description + ${recipe.description}">1</td>
+        <td th:text="${recipe.description}">1</td>
         <td><a th:href="${recipe.url}" th:text="${recipe.source}">Title ...</a></td>
         <td th:text="${recipe.notes.recipeNotes}">1</td>
-        <td th:text="Prep + ${recipe.prepTime}">Text ...</td>
-        <td th:text="Servings + ${recipe.servings}">Text ...</td>
+        <td th:text="${recipe.prepTime}">Text ...</td>
+        <td th:text="${recipe.servings}">Text ...</td>
         <td>
             <p th:each="ingredient : ${recipe.ingredients}">
                 <span th:text="${ingredient.description}">Text...></span>
-                <span th:text="Amount + ${ingredient.description}">Text...></span>
-                <span th:text="UOM + ${ingredient.uom}">Text...></span>
+                <span th:text="${ingredient.description}">Text...></span>
+                <span th:text="${ingredient.uom.description}">Text...></span>
             </p>
         </td>
+        <td th:text="${recipe.directions}">Text ...</td>
     </tr>
 </table>
 

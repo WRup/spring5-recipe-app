@@ -4,7 +4,8 @@ import guru.springframework.model.Recipe;
 import guru.springframework.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class RecipeService {
@@ -15,7 +16,10 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    Iterable<Recipe> findRecipes(){
-        return recipeRepository.findAll();
+    Set<Recipe> findRecipes() {
+        Set<Recipe> recipes = new HashSet<>();
+
+        recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
+        return recipes;
     }
 }
